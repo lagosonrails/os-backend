@@ -19,6 +19,8 @@ gem 'geocoder'
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
 gem 'rack-cors'
 
+gem 'friendly_id'
+
 # Debugger
 gem 'pry-rails'
 
@@ -34,6 +36,7 @@ group :test do
 end
 
 group :development, :test do
+  gem 'factory_girl_rails'
   # Test suite
   gem 'rspec-rails'
   # Use sqlite3 as the database for Active Record
