@@ -1,21 +1,9 @@
-unless Rails.env.development?
   Geocoder.configure(
-    # :lookup => :google,
-    # :ip_lookup => :ip_address_labs,
-
-    api_key: 'AIzaSyA-kf5I1_5NlRx3Iaf_z94yFWHBMox-pP0',
+    lookup: :mapbox,
+    api_key: 'pk.eyJ1IjoibGFnb3NvbnJhaWxzIiwiYSI6ImNpeDNwaWVsczAwMHEyeW8zZTRqcDQ2azAifQ.0yJB8rh0xQflm9_rIzPG0Q',
     cache: Redis.new
-    # :api_key => "AIzaSyAEALUV3stEk3-WheIPKEiUOKeEMyf7aUY",
-    # :use_https => true,
-    #
-    # :google => {
-    #   :api_key => "AIzaSyA-kf5I1_5NlRx3Iaf_z94yFWHBMox-pP0"
-    # },
-    # :ip_address_labs => {
-    #   :api_key => "SAKH6D8QX74D2Q27RKEZ"
-    # },
+
   )
-end
 
 ##Test
 if Rails.env.test?

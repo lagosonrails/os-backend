@@ -4,7 +4,7 @@ module RequestJsonHelper
   end
 
   def json
-    JSON.parse(request.body, symbolize_names: true)
+    JSON.parse(response.body, symbolize_names: true)
   end
 end
 

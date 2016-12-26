@@ -9,12 +9,7 @@ RSpec.configure do |config|
   end
 
   config.prepend_before(:each) do
-    Sidekiq::Worker.clear_all
     DatabaseCleaner.start
-    # base_locale = 'en'
-    # I18n.default_locale = base_locale.to_sym
-    # I18n.locale = I18n.default_locale
-    # Rails.application.routes.default_url_options[:locale_scope] = 'en'
   end
 
   config.append_after(:each) do

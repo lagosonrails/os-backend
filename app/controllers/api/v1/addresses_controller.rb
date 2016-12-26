@@ -3,7 +3,7 @@ class Api::V1::AddressesController < ApplicationController
     before_action :find_address, except: [:create, :index]
 
     def index
-
+      @addresses = (scoped_to_company? && @company.addresses) || Address.includes(:company).all
     end
 
     def create
@@ -33,6 +33,6 @@ class Api::V1::AddressesController < ApplicationController
       end
 
       def address_params
-        
+
       end
 end

@@ -2,7 +2,7 @@ class Api::V1::CompaniesController < ApplicationController
   before_action :find_company, except: [:create, :index]
 
   def index
-
+    @companies = Company.all
   end
 
   def create
