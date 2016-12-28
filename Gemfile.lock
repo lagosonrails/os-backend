@@ -38,8 +38,13 @@ GEM
       i18n (~> 0.7)
       minitest (~> 5.1)
       tzinfo (~> 1.1)
+    acts_as_archival (1.1.1)
+      activerecord
     addressable (2.5.0)
       public_suffix (~> 2.0, >= 2.0.2)
+    annotate (2.6.5)
+      activerecord (>= 2.3.0)
+      rake (>= 0.8.7)
     arel (7.1.4)
     builder (3.2.2)
     coderay (1.1.1)
@@ -170,6 +175,8 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  acts_as_archival
+  annotate
   database_cleaner
   factory_girl_rails
   friendly_id

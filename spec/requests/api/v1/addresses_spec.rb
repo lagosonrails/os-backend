@@ -48,9 +48,21 @@ RSpec.describe "Addresses API", type: :request do
   describe "POST /api/v1/addresses" do
     let(:address_attributes) { attributes_for(:address) }
 
+    it "should create new address record" do
+
+      expect {
+        post '/api/v1/addresses', address: address_attributes
+      }.to change(Address, :count).by(1)
+
+    end
 
     describe "POST /api/v1/companies/:company_id_or_slug/addresses" do
+      it "should create new address record" do
+        expect {
+          post "/api/v1/companies/#{company.slug}/addresses", address: address_attributes
+        }.to change(Address, :count).by(1)
 
+      end
     end
   end
 

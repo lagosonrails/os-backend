@@ -1,4 +1,30 @@
+# == Schema Information
+#
+# Table name: addresses
+#
+#  id             :integer          not null, primary key
+#  company_id     :integer
+#  address_1      :string
+#  address_2      :string
+#  city           :string
+#  state          :string
+#  country        :string
+#  postal_code    :string
+#  created_at     :datetime         not null
+#  updated_at     :datetime         not null
+#  latitude       :float
+#  longitude      :float
+#  archive_number :string
+#  archived_at    :datetime
+#
+# Indexes
+#
+#  index_addresses_on_company_id  (company_id)
+#
+
 class Address < ApplicationRecord
+  acts_as_archival
+
   belongs_to :company
 
   # geocode if there is an address and no longitude and latitude
@@ -53,14 +79,10 @@ class Address < ApplicationRecord
       country
     ].compact.join(', ')
   end
+
+  def active?
+    !archived?
+  end
+
+  alias :active :active?
 end
-
-
-  # do |obj, result|
-  #   binding.pry
-  # end
-
-  # , if: proc{ |obj, result|
-  #   require 'pry' ; binding.pry
-  #   obj.full_address.blank?
-  # }
