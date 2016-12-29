@@ -43,32 +43,6 @@ class Address < ApplicationRecord
   end
   after_validation :reverse_geocode, if: :should_reverse_geocode?
 
-  def should_geocode?
-    latitude.blank? || longitude.blank? || address_changed?
-  end
-
-  def address_changed?
-    unless new_record?
-      address_1_changed?        ||
-      address_2_changed?        ||
-      city_changed?             ||
-      state_changed?            ||
-      postal_code_changed?      ||
-      country_changed?
-    end
-  end
-
-  def should_reverse_geocode?
-    full_address.blank? || coordinates_changed?
-  end
-
-  def coordinates_changed?
-    unless new_record?
-      latitude_changed? ||
-      longitude_changed?
-    end
-  end
-
   def full_address
     [
       address_1,
@@ -80,9 +54,39 @@ class Address < ApplicationRecord
     ].compact.join(', ')
   end
 
+  alias :formatted_address :full_address
+
   def active?
     !archived?
   end
 
   alias :active :active?
+
+  private
+
+    def should_geocode?
+      latitude.blank? || longitude.blank? || address_changed?
+    end
+
+    def address_changed?
+      unless new_record?
+        address_1_changed?        ||
+        address_2_changed?        ||
+        city_changed?             ||
+        state_changed?            ||
+        postal_code_changed?      ||
+        country_changed?
+      end
+    end
+
+    def should_reverse_geocode?
+      full_address.blank? || coordinates_changed?
+    end
+
+    def coordinates_changed?
+      unless new_record?
+        latitude_changed? ||
+        longitude_changed?
+      end
+    end
 end

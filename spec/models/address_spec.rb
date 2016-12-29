@@ -27,7 +27,7 @@ require 'rails_helper'
 RSpec.describe Address, type: :model do
   # pending "add some examples to (or delete) #{__FILE__}"
   describe "#full_address" do
-    subject { create(:address) }
+    subject { create(:address_with_full_address) }
 
     it 'should give the full address of the location' do
       expect(subject.full_address).to eql([
@@ -39,6 +39,31 @@ RSpec.describe Address, type: :model do
                                             subject.country
                                           ].compact.join(', ')
                                           )
+    end
+  end
+
+  describe "Geocoding Actions(#geocode|#reverse_geocode)" do
+    
+    context "when there is an address but no coordinates" do
+      subject { build(:address_with_full_address) }
+
+      it "should geocode the address" do
+        expect(subject).to receive(:geocode)
+        expect(subject).not_to receive(:reverse_geocode)
+
+        subject.save
+      end
+    end
+
+    context "when there are coordinates but no addresses" do
+      subject { build(:address_with_coordinates) }
+
+      it "should reverse geocode the address" do
+        expect(subject).to receive(:reverse_geocode)
+        expect(subject).not_to receive(:geocode)
+
+        subject.save
+      end
     end
   end
 end

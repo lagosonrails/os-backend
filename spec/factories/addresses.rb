@@ -44,17 +44,22 @@ FactoryGirl.define do
   end
 
   sequence :postal_code
-  # do |i|
-  #
-  # end
 
   factory :address do
     company
-    address_1
-    address_2
-    city
-    state
-    country
-    postal_code
+
+    factory :address_with_full_address do
+      address_1
+      address_2
+      city
+      state
+      country
+      postal_code
+    end
+
+    factory :address_with_coordinates do
+      latitude 6.49789205180561
+      longitude 3.38292296044528
+    end
   end
 end

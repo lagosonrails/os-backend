@@ -1,6 +1,6 @@
   Geocoder.configure(
     lookup: :mapbox,
-    api_key: 'pk.eyJ1IjoibGFnb3NvbnJhaWxzIiwiYSI6ImNpeDNwaWVsczAwMHEyeW8zZTRqcDQ2azAifQ.0yJB8rh0xQflm9_rIzPG0Q',
+    api_key: ENV['mapbox_api_key'],
     cache: Redis.new
 
   )
@@ -11,13 +11,13 @@ if Rails.env.test?
   Geocoder::Lookup::Test.set_default_stub(
     [
       {
-        'latitude'     => 40.7143528,
-        'longitude'    => -74.0059731,
-        'address'      => 'New York, NY, USA',
-        'state'        => 'New York',
-        'state_code'   => 'NY',
-        'country'      => 'United States',
-        'country_code' => 'US'
+        'latitude'     => 6.508,
+        'longitude'    => 3.375,
+        'address'      => 'Lagos',
+        'state'        => 'Lagos State',
+        'state_code'   => 'LOS',
+        'country'      => 'Nigeria',
+        'country_code' => 'NG'
       }
     ]
   )
