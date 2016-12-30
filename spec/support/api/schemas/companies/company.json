@@ -1,0 +1,13 @@
+{
+  "definitions": {
+    "company": {
+      "type": "object",
+      "properties": {
+        "id": {"type": "integer"},
+        "name": {"type": "string"},
+        "slug": {"type": "string"}
+      }
+    },
+    "required": ["id", "name", "slug"]
+  }
+}

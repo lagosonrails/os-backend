@@ -1,0 +1,8 @@
+{
+  "type": "object",
+  "properties": {
+    "address": {
+      "$ref": "address.json#/definitions/address"
+    }
+  }
+}
