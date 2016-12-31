@@ -5,6 +5,8 @@ Rails.application.routes.draw do
     namespace :api do
       namespace :v1 do
         resources :addresses
+        get :search, to: 'searches#search'
+        # resource :search, controller: 'search'
 
         resources :companies do
           resources :addresses, on: :member
