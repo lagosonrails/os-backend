@@ -4,13 +4,13 @@ class Api::V1::AddressesController < ApplicationController
 
 =begin
   @apiVersion 1.0.0
-  @api {get} /api/v1/addresses Index route of the addresses
+  @api {get} /api/v1/addresses Index - Fetch all addresses
   @apiGroup Address Endpoints
 
   @apiExample {url} Url Example for Address
             http://example.com/api/v1/addresses
   @apiExample {url} Url Example for Address
-            http://example.com/api/v1/companies/:company_id_or_slug/addresses
+            http://example.com/api/v1/companies/gtbank/addresses
 
   @apiParam {Integer} [company_slug_or_id] slug or id of the company
 
@@ -38,7 +38,7 @@ class Api::V1::AddressesController < ApplicationController
 
 =begin
   @apiVersion 1.0.0
-  @api {post} /api/v1/addresses Create endpoint for the address
+  @api {post} /api/v1/addresses Create - Add a new address
   @apiGroup Address Endpoints
 
   @apiExample {url} Url Example for Coordinates
@@ -83,6 +83,44 @@ class Api::V1::AddressesController < ApplicationController
       end
     end
 
+=begin
+  @apiVersion 1.0.0
+  @api {put} /api/v1/addresses/:id Update - Edit an address
+  @apiGroup Address Endpoints
+
+  @apiExample {url} Url Example for Coordinates
+            http://example.com/api/v1/addresses/:id
+
+
+  @apiParam {Object} address Address object
+  @apiParam {Integer} address.company_id Company ID for the location
+  @apiParam {String} address.address_1 address_1 attribute of the location
+  @apiParam {String} address.address_2 address_2 attribute of the location
+  @apiParam {String} address.city city of the atm location
+  @apiParam {String} address.state state of the atm location
+  @apiParam {String} address.country country of the atm location
+  @apiParam {String} address.postal_code postal_code of the atm location
+  @apiParam {String} address.latitude latitude of the atm location
+  @apiParam {String} address.latitude longitude of the atm location
+
+
+  @apiSuccess {Object}  address Address ID
+  @apiSuccess {Integer}  address.id Address ID
+  @apiSuccess {String}  address.address_1 address_1 of the location
+  @apiSuccess {String}  address.address_2 address_2 of the location
+  @apiSuccess {String}  address.city city of the location
+  @apiSuccess {String}  address.state state of the location
+  @apiSuccess {String}  address.country country of the location
+  @apiSuccess {Flaot}  address.longitude longitude of the location
+  @apiSuccess {Float}  address.latitude latitude of the location
+  @apiSuccess {Float}  address.postal_code postal_code of the location
+  @apiSuccess {Float}  address.active active state of the ATM
+  @apiSuccess {Float}  address.formatted_address full text string of the location
+  @apiSuccess {Object}  address.company Company object of the address
+  @apiSuccess {Integer}  address.company.id ID of the Company
+  @apiSuccess {String}  address.company.name name of the Company operating the ATM
+  @apiSuccess {String}  address.company.slug slug of the Company operating the ATM
+=end
     def update
       if @address.update(address_params)
         render :show,  status: :ok#, location: @post
@@ -91,6 +129,25 @@ class Api::V1::AddressesController < ApplicationController
       end
     end
 
+=begin
+  @apiVersion 1.0.0
+  @api {delete} /api/v1/addresses Destroy - Delete an address
+  @api {delete} /api/v1/companies/:company_id_or_slug/addresses Destroy - Delete an address
+  @apiGroup Address Endpoints
+
+  @apiExample {url} Url Example for Address
+            http://example.com/api/v1/addresses/:id
+  @apiExample {url} Url Example for Address
+            http://example.com/api/v1/companies/:company_id_or_slug/addresses/:id
+
+  @apiParam {Integer} [company_slug_or_id] slug or id of the company
+  @apiParam {Integer} id id of the company
+
+
+  @apiSuccess {Object} address Array of Address Objects
+  @apiSuccess {Integer}  address.id Address ID
+  @apiSuccess {Float}  addresses.active active state of the ATM location. Deleted locations should have an inactive state
+=end
     def destroy
       # determine how records should be removed
       @address.archive
