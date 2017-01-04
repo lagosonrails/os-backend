@@ -43,7 +43,6 @@ class Api::V1::SearchesController < ApplicationController
   def search
     @addresses = Address.includes(:company)
     @addresses = @addresses.references(:company).where("companies.name LIKE ?", "%#{company_name}%") if scoped_to_company?
-    require 'pry' ; binding.pry
     @addresses = scope_to_location(@addresses, geoserialize_coordinates_and_location_params) if scoped_to_location?
 
     render 'api/v1/addresses/index', status: :ok
@@ -60,7 +59,7 @@ class Api::V1::SearchesController < ApplicationController
   end
 
   def company_name
-    params[:company][:name]
+    params[:company][:name] if params[:company]
   end
 
   def geoserialize_coordinates_and_location_params
@@ -75,7 +74,7 @@ class Api::V1::SearchesController < ApplicationController
   end
 
   def scope_to_location(collection, location)
-    collection.near(location, 20, units: :km) # allow client to set radius of search
+    collection.near(location, 20, units: :km) # allow client to set radius of search or let front end do the calculations
   end
 
   def query_params

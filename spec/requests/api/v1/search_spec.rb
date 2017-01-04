@@ -49,7 +49,7 @@ RSpec.describe "Search API", type: :request do
           create_list
         end
 
-        let(:search_params) { {location: 'Warri', company: {name: 'Stanbic' }}}
+        let(:search_params) { {location: 'Warri', company: {name: 'Stanbic' }} }
       end
     end
 
