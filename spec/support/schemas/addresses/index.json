@@ -1,0 +1,11 @@
+{
+  "type": "object",
+  "properties": {
+    "addresses": {
+      "type": "array",
+      "properties":{
+        "$ref": "address.json#/definitions/address"
+      }
+    }
+  }
+}
