@@ -21,5 +21,41 @@ if Rails.env.test?
       }
     ]
   )
+
+  Geocoder::Lookup::Test.add_stub('Yaba', [
+    {
+      'latitude'     => 6.73827991580656,
+      'longitude'    => 11.7079757899046,
+      'address'      => 'Yaba',
+      'state'        => 'Lagos State',
+      'state_code'   => 'LOS',
+      'country'      => 'Nigeria',
+      'country_code' => 'NG'
+    }
+
+  ])
+  Geocoder::Lookup::Test.add_stub('Abuja', [
+    {
+      'latitude'     => 8.993,
+      'longitude'    => 7.442,
+      'address'      => 'Abuja',
+      'state'        => 'FCT',
+      'state_code'   => 'ABJ',
+      'country'      => 'Nigeria',
+      'country_code' => 'NG'
+    }
+
+  ])
+  Geocoder::Lookup::Test.add_stub('Warri', [
+    {
+      'latitude'     => 53.402014,
+      'longitude'    => -2.568332,
+      'address'      => 'Warri',
+      'state'        => 'Delta State',
+      'country'      => 'Nigeria',
+      'country_code' => 'NG'
+    }
+
+  ])
 end
 ##END Test
