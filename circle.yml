@@ -1,0 +1,10 @@
+machine:
+  ruby:
+    version: 2.4.0
+
+deployment:
+  production:
+    branch: master
+    heroku:
+      appname: os-backend
+      
