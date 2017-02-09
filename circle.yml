@@ -1,0 +1,9 @@
+machine:
+  ruby:
+    version: 2.4.0
+
+deployment:
+  production:
+    branch: develop
+    heroku:
+      appname: os-backend
