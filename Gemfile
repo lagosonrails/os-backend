@@ -25,6 +25,8 @@ gem 'figaro'
 # Debugger
 gem 'pry-rails'
 
+gem 'faraday'
+
 
 group :development do
   gem 'listen', '~> 3.0.5'
