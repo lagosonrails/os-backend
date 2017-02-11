@@ -1,7 +1,7 @@
 module GooglePlaces::Errors
   class InvalidKeyError < StandardError
     def message
-      <<~EOF
+      <<-EOF
         Please provide a valid Google API key. You can set an ENV['google_places_api_key'] variable.
         To get a valid API key please
         1. Visit https://console.developers.google.com
