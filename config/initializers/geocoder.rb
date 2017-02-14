@@ -1,9 +1,10 @@
-  Geocoder.configure(
-    lookup: :mapbox,
-    api_key: ENV['mapbox_api_key'],
-    cache: Redis.new
+REDIS = ENV['REDISCLOUD_URL'] ? Redis.new( url: ENV['REDISCLOUD_URL'] ) : Redis.new
 
-  )
+Geocoder.configure(
+  lookup: :mapbox,
+  api_key: ENV['mapbox_api_key'],
+  cache: REDIS
+)
 
 ##Test
 if Rails.env.test?
